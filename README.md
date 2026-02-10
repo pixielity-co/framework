@@ -3,13 +3,14 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/pixielity-co/framework/actions"><img src="https://github.com/pixielity-co/framework/workflows/Tests/badge.svg" alt="Tests"></a>
-  <a href="https://github.com/pixielity-co/framework/actions"><img src="https://github.com/pixielity-co/framework/workflows/Code%20Quality/badge.svg" alt="Code Quality"></a>
+  <a href="https://github.com/pixielity-co/framework/actions"><img src="https://github.com/pixielity-co/framework/actions/workflows/tests.yml/badge.svg" alt="Tests"></a>
+  <a href="https://github.com/pixielity-co/framework/actions"><img src="https://github.com/pixielity-co/framework/actions/workflows/code-quality.yml/badge.svg" alt="Code Quality"></a>
+  <a href="https://github.com/pixielity-co/framework/actions"><img src="https://github.com/pixielity-co/framework/actions/workflows/security.yml/badge.svg" alt="Security"></a>
   <a href="https://codecov.io/gh/pixielity-co/framework"><img src="https://codecov.io/gh/pixielity-co/framework/branch/main/graph/badge.svg" alt="codecov"></a>
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
   <a href="https://php.net"><img src="https://img.shields.io/badge/php-%5E8.3%20%7C%20%5E8.4%20%7C%20%5E8.5-blue" alt="PHP Version"></a>
-  <a href="https://packagist.org/packages/pixielity-co/framework"><img src="https://img.shields.io/packagist/v/pixielity-co/framework.svg" alt="Latest Version"></a>
-  <a href="https://packagist.org/packages/pixielity-co/framework"><img src="https://img.shields.io/packagist/dt/pixielity-co/framework.svg" alt="Total Downloads"></a>
+  <a href="https://packagist.org/packages/pixielity-co/framework"><img src="https://img.shields.io/packagist/v/pixielity-co/framework.svg?style=flat-square" alt="Latest Version"></a>
+  <a href="https://packagist.org/packages/pixielity-co/framework"><img src="https://img.shields.io/packagist/dt/pixielity-co/framework.svg?style=flat-square" alt="Total Downloads"></a>
 </p>
 
 # Pixielity Framework
