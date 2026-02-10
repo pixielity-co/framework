@@ -1,0 +1,58 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "pixielity/foundation",
+    "description": "The Pixielity Foundation Component - Core application and container implementation.",
+    "type": "library",
+    "keywords": [
+        "pixielity",
+        "foundation",
+        "application",
+        "container",
+        "framework"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pixielity Team",
+            "email": "team@pixielity.com",
+            "homepage": "https://pixielity.com"
+        }
+    ],
+    "homepage": "https://github.com/pixielity/framework",
+    "support": {
+        "issues": "https://github.com/pixielity/framework/issues",
+        "source": "https://github.com/pixielity/framework/tree/main/src/Foundation",
+        "docs": "https://docs.pixielity.com/packages/foundation"
+    },
+    "require": {
+        "php": "^8.3 || ^8.4 || ^8.5",
+        "psr/container": "^2.0",
+        "pixielity/contracts": "self.version"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5",
+        "mockery/mockery": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pixielity\\Foundation\\": ""
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pixielity\\Foundation\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
