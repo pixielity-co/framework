@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 /**
- * Pixielity Framework
+ * Pixielity Framework.
  *
  * @link https://pixielity.com
+ *
  * @copyright Copyright (c) 2026 Pixielity Team
  * @license https://opensource.org/licenses/MIT MIT License
  */
@@ -16,8 +17,8 @@ use PHPUnit\Framework\TestCase;
 use Pixielity\PackageA\Service;
 
 /**
- * Class ServiceTest
- * 
+ * Class ServiceTest.
+ *
  * Tests for the enterprise-grade PackageA Service component.
  */
 class ServiceTest extends TestCase
@@ -26,6 +27,6 @@ class ServiceTest extends TestCase
     public function it_can_execute_enterprise_action(): void
     {
         $service = new Service();
-        $this->assertEquals("PackageA Enterprise Action Executed", $service->execute());
+        $this->assertEquals('PackageA Enterprise Action Executed', $service->execute());
     }
 }

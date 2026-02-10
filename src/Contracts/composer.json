@@ -26,6 +26,7 @@
     },
     "require": {
         "php": "^8.3 || ^8.4 || ^8.5",
+        "pixielity/exceptions": "*",
         "psr/container": "^2.0"
     },
     "require-dev": {
@@ -33,7 +34,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Pixielity\\Contracts\\": ""
+            "Pixielity\\Contracts\\": "src/"
         }
     },
     "autoload-dev": {

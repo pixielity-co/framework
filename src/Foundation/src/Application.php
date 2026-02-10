@@ -3,9 +3,10 @@
 declare(strict_types=1);
 
 /**
- * Pixielity Framework
+ * Pixielity Framework.
  *
  * @link https://pixielity.com
+ *
  * @copyright Copyright (c) 2026 Pixielity Team
  * @license https://opensource.org/licenses/MIT MIT License
  */
@@ -15,12 +16,10 @@ namespace Pixielity\Foundation;
 use Pixielity\Contracts\Application as ApplicationContract;
 
 /**
- * Class Application
+ * Class Application.
  *
- * The core implementation of the Pixielity Framework. This class manages the 
+ * The core implementation of the Pixielity Framework. This class manages the
  * application lifecycle, service registration, and core framework state.
- *
- * @package Pixielity\Foundation
  */
 class Application extends Container implements ApplicationContract
 {
@@ -33,8 +32,6 @@ class Application extends Container implements ApplicationContract
 
     /**
      * Indicates if the application has been booted.
-     *
-     * @var bool
      */
     protected bool $booted = false;
 
@@ -48,8 +45,6 @@ class Application extends Container implements ApplicationContract
 
     /**
      * Boot the application services and providers.
-     *
-     * @return void
      */
     public function boot(): void
     {
@@ -65,8 +60,6 @@ class Application extends Container implements ApplicationContract
 
     /**
      * Get the framework version.
-     *
-     * @return string
      */
     public function version(): string
     {

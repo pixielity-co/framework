@@ -32,6 +32,9 @@ use Rector\Privatization\Rector\ClassMethod\PrivatizeFinalClassMethodRector;
 use Rector\Set\ValueObject\SetList;
 use Rector\TypeDeclaration\Rector\ClassMethod\AddVoidReturnTypeWhereNoReturnRector;
 use Rector\TypeDeclaration\Rector\ClassMethod\ParamTypeByMethodCallTypeRector;
+use RectorLaravel\Set\LaravelSetList;
+use RectorLaravel\Set\Packages\Faker\FakerSetList;
+use RectorLaravel\Set\Packages\Livewire\LivewireSetList;
 
 return RectorConfig::configure()
     // =========================================================================
@@ -41,6 +44,10 @@ return RectorConfig::configure()
         __DIR__ . '/src',
         __DIR__ . '/playground',
     ])
+    // =========================================================================
+    // CACHE CONFIGURATION
+    // =========================================================================
+    ->withCache(__DIR__ . '/build/rector')
     // =========================================================================
     // SKIP CONFIGURATION
     // =========================================================================
@@ -217,6 +224,116 @@ return RectorConfig::configure()
          * - Improves performance
          */
         SetList::INSTANCEOF,
+        // =====================================================================
+        // LARAVEL-SPECIFIC RULES
+        // =====================================================================
+
+        /*
+         * Laravel 11 Upgrades
+         *
+         * Modernizes Laravel code to version 11:
+         * - Updates deprecated methods
+         * - Modernizes facades usage
+         * - Updates helper functions
+         * - Converts to new conventions
+         */
+        LaravelSetList::LARAVEL_110,
+
+        /*
+         * Laravel Code Quality
+         *
+         * Improves Laravel-specific code quality:
+         * - Simplifies array helpers
+         * - Optimizes collection usage
+         * - Improves query builder usage
+         * - Standardizes helper functions
+         */
+        LaravelSetList::LARAVEL_CODE_QUALITY,
+
+        /*
+         * Laravel Array Strings
+         *
+         * Converts string-based array access to proper methods:
+         * - array_get() to Arr::get()
+         * - array_set() to Arr::set()
+         * - array_has() to Arr::has()
+         * - str_* to Str::*
+         */
+        LaravelSetList::LARAVEL_ARRAY_STR_FUNCTION_TO_STATIC_CALL,
+
+        /*
+         * Laravel Eloquent Magic Method
+         *
+         * Converts magic methods to explicit methods:
+         * - Dynamic where methods to explicit where
+         * - Improves IDE support
+         * - Better static analysis
+         */
+        LaravelSetList::LARAVEL_ELOQUENT_MAGIC_METHOD_TO_QUERY_BUILDER,
+
+        /*
+         * Laravel Facade
+         *
+         * Optimizes facade usage:
+         * - Converts to proper facade calls
+         * - Improves performance
+         * - Better type hints
+         */
+        LaravelSetList::LARAVEL_FACADE_ALIASES_TO_FULL_NAMES,
+
+        /*
+         * Laravel Legacy
+         *
+         * Removes legacy Laravel patterns:
+         * - Old helper functions
+         * - Deprecated methods
+         * - Legacy conventions
+         */
+        LaravelSetList::LARAVEL_LEGACY_FACTORIES_TO_CLASSES,
+
+        /*
+         * Laravel Container String
+         *
+         * Converts string-based container calls to class constants:
+         * - app('service') to app(Service::class)
+         * - Improves refactoring safety
+         * - Better IDE support
+         */
+        LaravelSetList::LARAVEL_CONTAINER_STRING_TO_FULLY_QUALIFIED_NAME,
+
+        /*
+         * Laravel If Helpers
+         *
+         * Modernizes conditional helpers:
+         * - optional() to ?->
+         * - when() to match expressions
+         * - unless() to proper conditionals
+         */
+        LaravelSetList::LARAVEL_IF_HELPERS,
+        // =====================================================================
+        // LARAVEL PACKAGE-SPECIFIC RULES
+        // =====================================================================
+
+        /*
+         * Faker Modernization
+         *
+         * Updates Faker usage to modern syntax:
+         * - Converts deprecated Faker methods
+         * - Updates to Faker v2+ syntax
+         * - Improves type safety
+         */
+        FakerSetList::FAKER_10,
+
+        /*
+         * Livewire v3 Upgrades
+         *
+         * Modernizes Livewire components to v3:
+         * - Updates component syntax
+         * - Converts lifecycle hooks
+         * - Updates property binding
+         * - Modernizes event handling
+         */
+        LivewireSetList::LIVEWIRE_30,
     ])
     // =========================================================================
     // IMPORT NAMES CONFIGURATION

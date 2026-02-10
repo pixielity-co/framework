@@ -5,52 +5,52 @@
     Production-ready test configuration for the monorepo with comprehensive
     coverage reporting, strict testing standards, and optimized performance.
 -->
-<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
-         bootstrap="vendor/autoload.php"
-         colors="true"
-         cacheDirectory="var/cache/phpunit"
-         beStrictAboutOutputDuringTests="true"
-         beStrictAboutTodoAnnotatedTests="true"
-         beStrictAboutChangesToGlobalState="true"
-         beStrictAboutCoverageMetadata="true"
-         failOnRisky="true"
-         failOnWarning="true"
-         executionOrder="random"
-         resolveDependencies="true"
-         stopOnFailure="false">
-    
+<phpunit
+    colors="true"
+    failOnRisky="true"
+    failOnWarning="true"
+    stopOnFailure="false"
+    executionOrder="random"
+    resolveDependencies="true"
+    cacheDirectory="build/phpunit"
+    bootstrap="vendor/autoload.php"
+    beStrictAboutCoverageMetadata="true"
+    beStrictAboutOutputDuringTests="true"
+    beStrictAboutChangesToGlobalState="true"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd">
+
     <!-- Test Suites -->
     <testsuites>
         <!-- Core Framework Tests -->
         <testsuite name="Framework">
             <directory>tests</directory>
         </testsuite>
-        
+
         <!-- Unit Tests -->
         <testsuite name="Unit">
             <directory>tests/Unit</directory>
             <directory>src/PackageA/tests/Unit</directory>
             <directory>src/PackageB/tests/Unit</directory>
         </testsuite>
-        
+
         <!-- Integration Tests -->
         <testsuite name="Integration">
             <directory>tests/Integration</directory>
             <directory>src/PackageA/tests/Integration</directory>
             <directory>src/PackageB/tests/Integration</directory>
         </testsuite>
-        
+
         <!-- Feature Tests -->
         <testsuite name="Feature">
             <directory>tests/Feature</directory>
         </testsuite>
-        
+
         <!-- Package-specific Tests -->
         <testsuite name="PackageA">
             <directory>src/PackageA/tests</directory>
         </testsuite>
-        
+
         <testsuite name="PackageB">
             <directory>src/PackageB/tests</directory>
         </testsuite>
@@ -76,32 +76,33 @@
 
     <!-- PHP Configuration -->
     <php>
-        <ini name="display_errors" value="1"/>
-        <ini name="error_reporting" value="-1"/>
-        <ini name="memory_limit" value="512M"/>
-        <ini name="date.timezone" value="UTC"/>
-        <env name="APP_ENV" value="testing"/>
-        <env name="CACHE_DRIVER" value="array"/>
-        <env name="SESSION_DRIVER" value="array"/>
-        <env name="QUEUE_CONNECTION" value="sync"/>
+        <env name="APP_ENV" value="testing" />
+        <ini name="display_errors" value="1" />
+        <ini name="memory_limit" value="512M" />
+        <ini name="date.timezone" value="UTC" />
+        <ini name="error_reporting" value="-1" />
+        <env name="CACHE_DRIVER" value="array" />
+        <env name="SESSION_DRIVER" value="array" />
+        <env name="QUEUE_CONNECTION" value="sync" />
     </php>
 
     <!-- Coverage Report Configuration -->
     <coverage pathCoverage="false"
-              ignoreDeprecatedCodeUnits="true"
-              disableCodeCoverageIgnore="false">
+        ignoreDeprecatedCodeUnits="true"
+        disableCodeCoverageIgnore="false">
         <report>
-            <html outputDirectory="coverage/html" lowUpperBound="50" highLowerBound="80"/>
-            <clover outputFile="coverage/clover.xml"/>
-            <cobertura outputFile="coverage/cobertura.xml"/>
-            <text outputFile="coverage/coverage.txt" showUncoveredFiles="true" showOnlySummary="false"/>
+            <html outputDirectory="coverage/html" lowUpperBound="50" highLowerBound="80" />
+            <clover outputFile="coverage/clover.xml" />
+            <cobertura outputFile="coverage/cobertura.xml" />
+            <text outputFile="coverage/coverage.txt" showUncoveredFiles="true"
+                showOnlySummary="false" />
         </report>
     </coverage>
 
     <!-- Logging -->
     <logging>
-        <junit outputFile="var/log/junit.xml"/>
-        <testdoxHtml outputFile="var/log/testdox.html"/>
-        <testdoxText outputFile="var/log/testdox.txt"/>
+        <junit outputFile="var/log/junit.xml" />
+        <testdoxHtml outputFile="var/log/testdox.html" />
+        <testdoxText outputFile="var/log/testdox.txt" />
     </logging>
 </phpunit>

@@ -1,0 +1,47 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "pixielity/playground",
+    "description": "Playground application for testing Pixielity Framework components",
+    "type": "project",
+    "keywords": [
+        "pixielity",
+        "playground",
+        "testing",
+        "development"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pixielity Team",
+            "email": "team@pixielity.com",
+            "homepage": "https://pixielity.com"
+        }
+    ],
+    "require": {
+        "php": "^8.3 || ^8.4 || ^8.5",
+        "pixielity/foundation": "@dev",
+        "pixielity/contracts": "@dev",
+        "pixielity/exceptions": "@dev"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pixielity\\Playground\\": "src/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "../src/*",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}

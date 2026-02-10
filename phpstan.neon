@@ -10,9 +10,9 @@
 #
 # @version 1.0.0
 
-includes:
-    # Include Larastan for Laravel-specific rules
-    - vendor/larastan/larastan/extension.neon
+# Temporarily disable Larastan until Laravel is installed
+# includes:
+#     - vendor/larastan/larastan/extension.neon
 
 parameters:
     # =========================================================================
@@ -27,6 +27,11 @@ parameters:
     # STRICTNESS LEVEL (0-9, 9 is strictest)
     # =========================================================================
     level: 8
+
+    # =========================================================================
+    # BUILD DIRECTORY
+    # =========================================================================
+    tmpDir: build/phpstan
 
     # =========================================================================
     # TYPE CHECKING CONFIGURATION
