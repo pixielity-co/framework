@@ -27,11 +27,11 @@
     },
     "require": {
         "php": "^8.3 || ^8.4 || ^8.5",
-        "pixielity/contracts": "@dev",
-        "pixielity/exceptions": "@dev",
-        "pixielity/foundation": "@dev",
-        "pixielity/package-a": "@dev",
-        "pixielity/package-b": "@dev",
+        "pixielity/contracts": "*",
+        "pixielity/exceptions": "*",
+        "pixielity/foundation": "*",
+        "pixielity/package-a": "*",
+        "pixielity/package-b": "*",
         "psr/container": "^2.0",
         "psr/http-message": "^2.0",
         "psr/http-server-middleware": "^1.0"
