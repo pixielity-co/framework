@@ -1,6 +1,8 @@
 # Dependencies
 /vendor/
 /node_modules/
+/playground/vendor/
+/playground/composer.lock
 
 # IDE
 /.idea/

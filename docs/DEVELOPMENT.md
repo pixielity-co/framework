@@ -319,7 +319,7 @@ mkdir -p src/PackageC/{src,tests}
 4. Install package:
 
 ```bash
-composer require pixielity/package-c:@dev
+composer require pixielity/package-c:*
 ```
 
 ### Package Structure

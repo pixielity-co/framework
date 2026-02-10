@@ -356,15 +356,6 @@ return RectorConfig::configure()
     // ADDITIONAL CONFIGURATION
     // =========================================================================
     /*
-     * Cache Directory
-     *
-     * Rector uses cache to speed up subsequent runs.
-     * Cache is stored in /tmp by default.
-     */
-    ->withCache(
-        cacheDirectory: __DIR__ . '/var/cache/rector',
-    )
-    /*
      * File Extensions
      *
      * Process only PHP files.

@@ -148,7 +148,7 @@ mkdir -p src/PackageC/{src,tests}
 # Add to root composer.json replace
 
 # Install
-composer require pixielity/package-c:@dev
+composer require pixielity/package-c:*
 ```
 
 ### Update Dependencies

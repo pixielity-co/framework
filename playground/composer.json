@@ -19,9 +19,9 @@
     ],
     "require": {
         "php": "^8.3 || ^8.4 || ^8.5",
-        "pixielity/foundation": "@dev",
-        "pixielity/contracts": "@dev",
-        "pixielity/exceptions": "@dev"
+        "pixielity/foundation": "*",
+        "pixielity/contracts": "*",
+        "pixielity/exceptions": "*"
     },
     "autoload": {
         "psr-4": {

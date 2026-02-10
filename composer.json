@@ -125,7 +125,7 @@
             "@format",
             "@rector:fix",
             "@analyse",
-            "@test:coverage"
+            "@test"
         ],
         "dump": [
             "composer dump-autoload -o"
