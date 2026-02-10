@@ -1,0 +1,69 @@
+{
+    "$schema": "https://raw.githubusercontent.com/infection/infection/master/resources/schema.json",
+    "comment": "Pixielity Enterprise Mutation Testing Configuration - Tests the quality of your tests by mutating source code",
+    "source": {
+        "directories": [
+            "src/Contracts",
+            "src/Exceptions",
+            "src/Foundation",
+            "src/PackageA/src",
+            "src/PackageB/src",
+            "playground"
+        ],
+        "excludes": [
+            "vendor",
+            "tests",
+            "stubs",
+            "cache"
+        ]
+    },
+    "logs": {
+        "text": "var/log/infection.log",
+        "html": "var/log/infection.html",
+        "summary": "var/log/infection-summary.log",
+        "json": "var/log/infection.json",
+        "perMutator": "var/log/infection-per-mutator.md",
+        "badge": {
+            "branch": "main"
+        }
+    },
+    "tmpDir": "var/cache/infection",
+    "timeout": 10,
+    "phpUnit": {
+        "configDir": ".",
+        "customPath": "vendor/bin/phpunit"
+    },
+    "mutators": {
+        "@default": true,
+        "@function_signature": true,
+        "@number": true,
+        "@operator": true,
+        "@regex": true,
+        "@removal": true,
+        "@return_value": true,
+        "@sort": true,
+        "@zero_iteration": true,
+        "@cast": true,
+        "@unwrap": true,
+        "@extensions": true,
+        "MethodCallRemoval": {
+            "ignore": [
+                "Mockery::*",
+                "PHPUnit\\Framework\\TestCase::*"
+            ]
+        }
+    },
+    "minMsi": 80,
+    "minCoveredMsi": 90,
+    "threads": 4,
+    "bootstrap": "vendor/autoload.php",
+    "testFramework": "phpunit",
+    "testFrameworkOptions": "--testsuite=Unit",
+    "ignoreMsiWithNoMutations": true,
+    "noProgress": false,
+    "noCoverage": false,
+    "ignoreSourceCodeByRegex": [
+        ".*Test\\.php$",
+        ".*Stub\\.php$"
+    ]
+}
