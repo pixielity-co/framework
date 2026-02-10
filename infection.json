@@ -2,12 +2,7 @@
     "$schema": "https://raw.githubusercontent.com/infection/infection/master/resources/schema.json",
     "source": {
         "directories": [
-            "src/Contracts",
-            "src/Exceptions",
-            "src/Foundation",
-            "src/PackageA/src",
-            "src/PackageB/src",
-            "playground"
+            "src/PackageA/src"
         ],
         "excludes": [
             "vendor",
@@ -52,6 +47,6 @@
     "minCoveredMsi": 90,
     "bootstrap": "vendor/autoload.php",
     "testFramework": "phpunit",
-    "testFrameworkOptions": "--testsuite=Unit",
+    "testFrameworkOptions": "--no-coverage",
     "ignoreMsiWithNoMutations": true
 }

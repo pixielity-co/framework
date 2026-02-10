@@ -75,13 +75,13 @@
             "@composer dump-autoload -o"
         ],
         "test": [
-            "vendor/bin/phpunit --no-coverage"
+            "vendor/bin/phpunit"
         ],
         "test:unit": [
-            "vendor/bin/phpunit --testsuite=Unit --no-coverage"
+            "vendor/bin/phpunit --testsuite=Unit"
         ],
         "test:integration": [
-            "vendor/bin/phpunit --testsuite=Integration --no-coverage"
+            "vendor/bin/phpunit --testsuite=Integration"
         ],
         "test:coverage": [
             "vendor/bin/phpunit --coverage-html coverage --coverage-text"
@@ -118,13 +118,13 @@
         "ci:full": [
             "@format:check",
             "@analyse",
-            "@test"
+            "@test:coverage"
         ],
         "ci:fix:full": [
             "@format",
             "@rector:fix",
             "@analyse",
-            "@test"
+            "@test:coverage"
         ],
         "dump": [
             "composer dump-autoload -o"
