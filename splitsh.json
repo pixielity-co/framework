@@ -1,0 +1,18 @@
+{
+    "comment": "Subtree Splitting Configuration - Splits monorepo packages into separate repositories",
+    "description": "This configuration is used by splitsh-lite or similar tools to split the monorepo into individual package repositories. Each package can be installed independently via Composer.",
+    "subtrees": {
+        "pixielity/contracts": "src/Contracts",
+        "pixielity/exceptions": "src/Exceptions",
+        "pixielity/foundation": "src/Foundation",
+        "pixielity/package-a": "src/PackageA",
+        "pixielity/package-b": "src/PackageB"
+    },
+    "targets": {
+        "pixielity/contracts": "git@github.com:pixielity/contracts.git",
+        "pixielity/exceptions": "git@github.com:pixielity/exceptions.git",
+        "pixielity/foundation": "git@github.com:pixielity/foundation.git",
+        "pixielity/package-a": "git@github.com:pixielity/package-a.git",
+        "pixielity/package-b": "git@github.com:pixielity/package-b.git"
+    }
+}

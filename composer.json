@@ -1,0 +1,181 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "pixielity/framework",
+    "description": "The Pixielity PHP Framework - Enterprise-ready modular framework with monorepo architecture.",
+    "type": "project",
+    "keywords": [
+        "framework",
+        "monorepo",
+        "modular",
+        "php",
+        "enterprise",
+        "pixielity"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pixielity Team",
+            "email": "team@pixielity.com",
+            "homepage": "https://pixielity.com"
+        }
+    ],
+    "homepage": "https://github.com/pixielity/framework",
+    "support": {
+        "issues": "https://github.com/pixielity/framework/issues",
+        "source": "https://github.com/pixielity/framework",
+        "docs": "https://docs.pixielity.com"
+    },
+    "require": {
+        "php": "^8.3 || ^8.4 || ^8.5",
+        "psr/container": "^2.0",
+        "psr/http-message": "^2.0",
+        "psr/http-server-middleware": "^1.0"
+    },
+    "require-dev": {
+        "driftingly/rector-laravel": "^2.1",
+        "infection/infection": "^0.29",
+        "larastan/larastan": "^3.0",
+        "laravel/pint": "^1.24",
+        "mockery/mockery": "^1.6",
+        "nunomaduro/collision": "^8.6",
+        "phpstan/phpstan": "^2.0",
+        "phpstan/phpstan-strict-rules": "^2.0",
+        "phpunit/phpunit": "^11.5",
+        "rector/rector": "^2.3",
+        "squizlabs/php_codesniffer": "^3.7"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pixielity\\": "src/",
+            "Pixielity\\Playground\\": "playground/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pixielity\\Tests\\": "tests/",
+            "Pixielity\\Rector\\": "rector/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "path",
+            "url": "./src/*",
+            "options": {
+                "symlink": true
+            }
+        }
+    ],
+    "replace": {
+        "pixielity/contracts": "self.version",
+        "pixielity/exceptions": "self.version",
+        "pixielity/foundation": "self.version",
+        "pixielity/package-a": "self.version",
+        "pixielity/package-b": "self.version"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "@composer dump-autoload -o"
+        ],
+        "post-update-cmd": [
+            "@composer dump-autoload -o"
+        ],
+        "test": [
+            "vendor/bin/phpunit"
+        ],
+        "test:unit": [
+            "vendor/bin/phpunit --testsuite=Unit"
+        ],
+        "test:integration": [
+            "vendor/bin/phpunit --testsuite=Integration"
+        ],
+        "test:coverage": [
+            "vendor/bin/phpunit --coverage-html coverage --coverage-text"
+        ],
+        "test:coverage-clover": [
+            "vendor/bin/phpunit --coverage-clover coverage.xml"
+        ],
+        "analyse": [
+            "vendor/bin/phpstan analyse --memory-limit=2G"
+        ],
+        "analyse:baseline": [
+            "vendor/bin/phpstan analyse --generate-baseline"
+        ],
+        "format": [
+            "vendor/bin/pint --config ./pint.json"
+        ],
+        "format:check": [
+            "vendor/bin/pint --test --config ./pint.json"
+        ],
+        "cs:check": [
+            "vendor/bin/phpcs"
+        ],
+        "cs:fix": [
+            "vendor/bin/phpcbf"
+        ],
+        "rector": [
+            "vendor/bin/rector process --dry-run"
+        ],
+        "rector:fix": [
+            "vendor/bin/rector process"
+        ],
+        "mutate": [
+            "vendor/bin/infection --threads=4 --min-msi=80 --min-covered-msi=90"
+        ],
+        "ci": [
+            "@format:check",
+            "@analyse",
+            "@test"
+        ],
+        "ci:full": [
+            "@format:check",
+            "@cs:check",
+            "@analyse",
+            "@test:coverage",
+            "@mutate"
+        ],
+        "dump": [
+            "composer dump-autoload -o"
+        ]
+    },
+    "scripts-descriptions": {
+        "test": "Run all tests",
+        "test:unit": "Run unit tests only",
+        "test:integration": "Run integration tests only",
+        "test:coverage": "Run tests with HTML coverage report",
+        "test:coverage-clover": "Run tests with Clover XML coverage report",
+        "analyse": "Run static analysis with PHPStan",
+        "analyse:baseline": "Generate PHPStan baseline for existing errors",
+        "format": "Format code with Laravel Pint",
+        "format:check": "Check code formatting without fixing",
+        "cs:check": "Check code style with PHP_CodeSniffer",
+        "cs:fix": "Fix code style with PHP_CodeSniffer",
+        "rector": "Preview Rector refactoring changes (dry-run)",
+        "rector:fix": "Apply Rector refactoring changes",
+        "mutate": "Run mutation testing with Infection",
+        "audit": "Check for security vulnerabilities",
+        "validate": "Validate composer.json structure",
+        "ci": "Run CI checks (format, analyse, test)",
+        "ci:full": "Run full CI suite including mutation testing",
+        "dump": "Dump optimized autoloader"
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true,
+            "infection/extension-installer": true
+        },
+        "platform": {
+            "php": "8.3"
+        },
+        "bin-dir": "vendor/bin"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
