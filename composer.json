@@ -143,10 +143,9 @@
         "rector": "Preview Rector refactoring changes (dry-run)",
         "rector:fix": "Apply Rector refactoring changes",
         "mutate": "Run mutation testing with Infection",
-        "audit": "Check for security vulnerabilities",
-        "validate": "Validate composer.json structure",
         "ci": "Run CI checks (format, analyse, test)",
-        "ci:full": "Run full CI suite including mutation testing",
+        "ci:full": "Run full CI suite with coverage",
+        "ci:fix:full": "Fix code issues and run full CI suite",
         "dump": "Dump optimized autoloader"
     },
     "config": {
