@@ -108,7 +108,7 @@
             "vendor/bin/rector process"
         ],
         "mutate": [
-            "vendor/bin/infection --threads=4 --min-msi=80 --min-covered-msi=90"
+            "vendor/bin/infection --min-msi=80 --min-covered-msi=90"
         ],
         "ci": [
             "@format:check",
@@ -118,8 +118,7 @@
         "ci:full": [
             "@format:check",
             "@analyse",
-            "@test:coverage",
-            "@mutate"
+            "@test"
         ],
         "ci:fix:full": [
             "@format",

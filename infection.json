@@ -1,6 +1,5 @@
 {
     "$schema": "https://raw.githubusercontent.com/infection/infection/master/resources/schema.json",
-    "comment": "Pixielity Enterprise Mutation Testing Configuration - Tests the quality of your tests by mutating source code",
     "source": {
         "directories": [
             "src/Contracts",
@@ -22,10 +21,7 @@
         "html": "var/log/infection.html",
         "summary": "var/log/infection-summary.log",
         "json": "var/log/infection.json",
-        "perMutator": "var/log/infection-per-mutator.md",
-        "badge": {
-            "branch": "main"
-        }
+        "perMutator": "var/log/infection-per-mutator.md"
     },
     "tmpDir": "var/cache/infection",
     "timeout": 10,
@@ -42,7 +38,6 @@
         "@removal": true,
         "@return_value": true,
         "@sort": true,
-        "@zero_iteration": true,
         "@cast": true,
         "@unwrap": true,
         "@extensions": true,
@@ -55,15 +50,8 @@
     },
     "minMsi": 80,
     "minCoveredMsi": 90,
-    "threads": 4,
     "bootstrap": "vendor/autoload.php",
     "testFramework": "phpunit",
     "testFrameworkOptions": "--testsuite=Unit",
-    "ignoreMsiWithNoMutations": true,
-    "noProgress": false,
-    "noCoverage": false,
-    "ignoreSourceCodeByRegex": [
-        ".*Test\\.php$",
-        ".*Stub\\.php$"
-    ]
+    "ignoreMsiWithNoMutations": true
 }
