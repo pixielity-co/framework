@@ -13,6 +13,7 @@ declare(strict_types=1);
 
 namespace Pixielity\PackageA\Tests;
 
+use PHPUnit\Framework\Attributes\Test;
 use PHPUnit\Framework\TestCase;
 use Pixielity\PackageA\Service;
 
@@ -23,7 +24,7 @@ use Pixielity\PackageA\Service;
  */
 class ServiceTest extends TestCase
 {
-    /** @test */
+    #[Test]
     public function it_can_execute_enterprise_action(): void
     {
         $service = new Service();

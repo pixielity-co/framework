@@ -75,13 +75,13 @@
             "@composer dump-autoload -o"
         ],
         "test": [
-            "vendor/bin/phpunit"
+            "vendor/bin/phpunit --no-coverage"
         ],
         "test:unit": [
-            "vendor/bin/phpunit --testsuite=Unit"
+            "vendor/bin/phpunit --testsuite=Unit --no-coverage"
         ],
         "test:integration": [
-            "vendor/bin/phpunit --testsuite=Integration"
+            "vendor/bin/phpunit --testsuite=Integration --no-coverage"
         ],
         "test:coverage": [
             "vendor/bin/phpunit --coverage-html coverage --coverage-text"
