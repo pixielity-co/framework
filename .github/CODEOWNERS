@@ -1,0 +1,23 @@
+# Code Owners
+# These owners will be the default owners for everything in the repo.
+# Unless a later match takes precedence, they will be requested for
+# review when someone opens a pull request.
+
+# Global owners
+* @pixielity/maintainers
+
+# Core packages
+/src/Contracts/ @pixielity/core-team
+/src/Exceptions/ @pixielity/core-team
+/src/Foundation/ @pixielity/core-team
+
+# Configuration files
+/.github/ @pixielity/maintainers
+/composer.json @pixielity/maintainers
+/phpstan.neon @pixielity/maintainers
+/phpunit.xml @pixielity/maintainers
+/rector.php @pixielity/maintainers
+
+# Documentation
+/docs/ @pixielity/docs-team
+/*.md @pixielity/docs-team

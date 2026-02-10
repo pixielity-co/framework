@@ -1,0 +1,45 @@
+# Automatic PR labeling configuration
+# https://github.com/actions/labeler
+
+# Core packages
+"package: contracts":
+  - changed-files:
+      - any-glob-to-any-file: "src/Contracts/**"
+
+"package: exceptions":
+  - changed-files:
+      - any-glob-to-any-file: "src/Exceptions/**"
+
+"package: foundation":
+  - changed-files:
+      - any-glob-to-any-file: "src/Foundation/**"
+
+"package: package-a":
+  - changed-files:
+      - any-glob-to-any-file: "src/PackageA/**"
+
+"package: package-b":
+  - changed-files:
+      - any-glob-to-any-file: "src/PackageB/**"
+
+# File types
+"documentation":
+  - changed-files:
+      - any-glob-to-any-file: ["docs/**", "**/*.md"]
+
+"tests":
+  - changed-files:
+      - any-glob-to-any-file: ["tests/**", "**/tests/**"]
+
+"ci/cd":
+  - changed-files:
+      - any-glob-to-any-file: [".github/**", "Makefile"]
+
+"dependencies":
+  - changed-files:
+      - any-glob-to-any-file: ["composer.json", "composer.lock", "package.json"]
+
+"configuration":
+  - changed-files:
+      - any-glob-to-any-file:
+          ["*.json", "*.xml", "*.neon", "*.php", "*.yml", "*.yaml"]
