@@ -84,7 +84,7 @@
             "vendor/bin/phpunit --testsuite=Integration"
         ],
         "test:coverage": [
-            "vendor/bin/phpunit --coverage-html coverage --coverage-text"
+            "bin/test-coverage"
         ],
         "test:coverage-clover": [
             "vendor/bin/phpunit --coverage-clover coverage.xml"
