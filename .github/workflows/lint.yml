@@ -1,0 +1,62 @@
+name: Stage 1 - Lint & Security
+
+# ==============================================================================
+# Stage 1: Code Quality & Security Auditing
+# ==============================================================================
+# This workflow is the first line of defense for the Pixielity Framework.
+# It ensures all code follows the enterprise style guide and that all
+# third-party dependencies are free from known security vulnerabilities.
+# ==============================================================================
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  # ----------------------------------------------------------------------------
+  # Job: Lint & Security Audit
+  # ----------------------------------------------------------------------------
+  lint_and_security:
+    name: Lint & Security Audit
+    runs-on: ubuntu-latest
+    steps:
+      - name: 1.0 Checkout code
+        uses: actions/checkout@v4
+        with:
+          description: "Retrieve the latest codebase for analysis."
+
+      - name: 1.1 Setup PHP Environment
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: mbstring, dom, pdo, sqlite
+          coverage: none
+          description: "Initialize PHP 8.5 with core framework extensions."
+
+      - name: 1.2 Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+        description: "Install all monorepo dependencies using optimized autoloader."
+
+      - name: 1.3 Run Laravel Pint (Style Check)
+        run: ./vendor/bin/pint --test
+        description: "Enforce Pixielity/Laravel coding standards. Build fails on violations."
+
+      - name: 1.4 Run Composer Audit (Security Check)
+        run: composer audit
+        description: "Scan all dependencies for known security vulnerabilities via GitHub/Packagist database."
+
+  # ----------------------------------------------------------------------------
+  # Job: Notify Slack
+  # ----------------------------------------------------------------------------
+  notify:
+    needs: lint_and_security
+    if: always()
+    uses: ./.github/workflows/notifications.yml
+    with:
+      stage_name: "Lint & Security"
+      status: ${{ needs.lint_and_security.result }}
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+    description: "Trigger the centralized notification system with the result of this stage."

@@ -1,0 +1,62 @@
+name: Stage 2 - Static Analysis
+
+# ==============================================================================
+# Stage 2: Deep Static Analysis & Refactoring Check
+# ==============================================================================
+# This stage uses PHPStan (Larastan) and Rector to perform deep logical
+# analysis of the codebase. It ensures strict type safety and validates
+# that no legacy or poor-quality code patterns are introduced.
+# ==============================================================================
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_run:
+    workflows: ["Stage 1 - Lint & Security"]
+    types: [completed]
+
+jobs:
+  # ----------------------------------------------------------------------------
+  # Job: Static Analysis & Refactoring
+  # ----------------------------------------------------------------------------
+  analyse:
+    name: Deep Analysis
+    runs-on: ubuntu-latest
+    # Only run if the previous linting/security stage passed
+    if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
+    steps:
+      - name: 2.0 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 2.1 Setup PHP Environment
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.5'
+          extensions: mbstring, dom, pdo, sqlite
+          coverage: none
+
+      - name: 2.2 Install Dependencies
+        run: composer install --no-interaction --prefer-dist --optimize-autoloader
+
+      - name: 2.3 Run PHPStan (Larastan Level 9)
+        run: ./vendor/bin/phpstan analyse --configuration=phpstan.neon
+        description: "Execute maximum strictness analysis using Larastan rules for framework patterns."
+
+      - name: 2.4 Run Rector (Dry Run)
+        run: ./vendor/bin/rector process --dry-run
+        description: "Check if the code requires any automated refactoring based on Pixielity standards."
+
+  # ----------------------------------------------------------------------------
+  # Job: Notify Slack
+  # ----------------------------------------------------------------------------
+  notify:
+    needs: analyse
+    if: always()
+    uses: ./.github/workflows/notifications.yml
+    with:
+      stage_name: "Static Analysis"
+      status: ${{ needs.analyse.result }}
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

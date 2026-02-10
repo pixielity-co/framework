@@ -1,0 +1,87 @@
+name: Stage 4 - Split & Publish
+
+# ==============================================================================
+# Stage 4: Subtree Splitting & Component Distribution
+# ==============================================================================
+# This is the final production stage where individual framework components
+# are extracted from the monorepo and pushed to their standalone repositories.
+# This mimics the exact distribution strategy of Laravel and Symfony.
+# ==============================================================================
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    # Allows manual triggering for specific version releases
+    inputs:
+      version:
+        description: "Version to release (e.g., v1.0.0)"
+        required: false
+  workflow_run:
+    workflows: ["Stage 3 - Unit Tests"]
+    types: [completed]
+
+jobs:
+  # ----------------------------------------------------------------------------
+  # Job: Split & Publish
+  # ----------------------------------------------------------------------------
+  split:
+    name: Component Distribution
+    runs-on: ubuntu-latest
+    # Only run on main branch or manual dispatch, and only if all tests passed
+    if: >
+      (github.ref == 'refs/heads/main' || github.event_name == 'workflow_dispatch') &&
+      (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
+    steps:
+      - name: 4.0 Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # Full history is required for subtree splitting
+
+      - name: 4.1 Setup PHP Environment
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.5"
+          extensions: mbstring, dom, pdo, sqlite
+          coverage: none
+
+      - name: 4.2 Install System Dependencies (jq & splitsh-lite)
+        run: |
+          sudo apt-get update && sudo apt-get install -y jq
+          wget https://github.com/splitsh/lite/releases/download/v1.0.1/splitsh-lite_linux_amd64 -O splitsh-lite
+          chmod +x splitsh-lite
+          sudo mv splitsh-lite /usr/local/bin/splitsh-lite
+        description: "Install tools required for JSON parsing and Git subtree splitting."
+
+      - name: 4.3 Configure Git Identity
+        run: |
+          git config user.name "Pixielity Release Bot"
+          git config user.email "bot@pixielity.com"
+
+      - name: 4.4 Execute Split Script
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+        run: |
+          chmod +x bin/split.sh
+          bin/split.sh
+        description: "Run the specialized script to mirror components to their external repositories."
+
+      - name: 4.5 Create Monorepo Release Tag
+        if: github.event_name == 'workflow_dispatch' && github.event.inputs.version != ''
+        run: |
+          git tag ${{ github.event.inputs.version }}
+          git push origin ${{ github.event.inputs.version }}
+        description: "Apply a global version tag to the monorepo for historical tracking."
+
+  # ----------------------------------------------------------------------------
+  # Job: Notify Slack
+  # ----------------------------------------------------------------------------
+  notify:
+    needs: split
+    if: always()
+    uses: ./.github/workflows/notifications.yml
+    with:
+      stage_name: "Split & Publish"
+      status: ${{ needs.split.result }}
+    secrets:
+      SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

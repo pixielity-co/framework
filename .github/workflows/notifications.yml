@@ -1,0 +1,43 @@
+name: Framework Notifications
+
+on:
+  workflow_call:
+    inputs:
+      stage_name:
+        required: true
+        type: string
+      status:
+        required: true
+        type: string
+    secrets:
+      SLACK_WEBHOOK_URL:
+        required: true
+
+jobs:
+  slack_notify:
+    name: Slack Notification
+    runs-on: ubuntu-latest
+    steps:
+      - name: Notify Slack
+        uses: slackapi/slack-github-action@v1.24.0
+        with:
+          payload: |
+            {
+              "text": "Pixielity Framework CI/CD Update",
+              "attachments": [
+                {
+                  "color": "${{ inputs.status == 'success' && 'good' || 'danger' }}",
+                  "title": "Stage: ${{ inputs.stage_name }}",
+                  "text": "Status: ${{ inputs.status }}\nWorkflow: ${{ github.workflow }}\nCommit: ${{ github.sha }}",
+                  "actions": [
+                    {
+                      "type": "button",
+                      "text": "View Build",
+                      "url": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+                    }
+                  ]
+                }
+              ]
+            }
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}

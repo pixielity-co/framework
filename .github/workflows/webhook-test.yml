@@ -1,0 +1,112 @@
+name: 🔗 Webhook Test
+
+on:
+  workflow_dispatch:
+    inputs:
+      webhook_url:
+        description: "Webhook URL to test"
+        required: false
+        default: "https://packagist.org/api/github"
+  push:
+    branches: [main]
+    paths:
+      - "composer.json"
+      - "src/*/composer.json"
+
+jobs:
+  test-webhook:
+    name: 🔗 Test Webhook
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🔗 Test Packagist webhook
+        run: |
+          echo "Testing webhook connectivity..."
+
+          # Test main package
+          curl -X POST \
+            -H "Content-Type: application/json" \
+            -d '{"repository":{"url":"https://github.com/pixielity/framework"}}' \
+            https://packagist.org/api/github \
+            -w "\nHTTP Status: %{http_code}\n"
+
+      - name: 🔗 Test package webhooks
+        run: |
+          packages=(
+            "pixielity/contracts"
+            "pixielity/exceptions"
+            "pixielity/foundation"
+            "pixielity/package-a"
+            "pixielity/package-b"
+          )
+
+          for package in "${packages[@]}"; do
+            echo "Testing webhook for $package..."
+            curl -X POST \
+              -H "Content-Type: application/json" \
+              -d "{\"repository\":{\"url\":\"https://github.com/$package\"}}" \
+              https://packagist.org/api/github \
+              -w "\nHTTP Status: %{http_code}\n"
+            echo "---"
+          done
+
+      - name: ✅ Webhook test complete
+        run: echo "✅ All webhook tests completed"
+
+  verify-composer-json:
+    name: ✅ Verify composer.json
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout code
+        uses: actions/checkout@v4
+
+      - name: 🐘 Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.3"
+          tools: composer:v2
+
+      - name: ✅ Validate all composer.json files
+        run: |
+          echo "Validating root composer.json..."
+          composer validate --strict --no-check-lock
+
+          echo "Validating package composer.json files..."
+          for dir in src/*/; do
+            if [ -f "$dir/composer.json" ]; then
+              echo "Validating $dir/composer.json..."
+              composer validate --strict --no-check-lock --working-dir="$dir"
+            fi
+          done
+
+      - name: 🔍 Check package names
+        run: |
+          echo "Checking package names..."
+
+          packages=(
+            "src/Contracts:pixielity/contracts"
+            "src/Exceptions:pixielity/exceptions"
+            "src/Foundation:pixielity/foundation"
+            "src/PackageA:pixielity/package-a"
+            "src/PackageB:pixielity/package-b"
+          )
+
+          for package in "${packages[@]}"; do
+            dir="${package%%:*}"
+            expected_name="${package##*:}"
+            actual_name=$(jq -r '.name' "$dir/composer.json")
+            
+            if [ "$actual_name" = "$expected_name" ]; then
+              echo "✅ $dir: $actual_name"
+            else
+              echo "❌ $dir: Expected $expected_name, got $actual_name"
+              exit 1
+            fi
+          done
+
+      - name: ✅ All composer.json files valid
+        run: echo "✅ All composer.json files are valid and ready for Packagist"
