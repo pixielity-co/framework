@@ -1,0 +1,55 @@
+{
+    "$schema": "https://getcomposer.org/schema.json",
+    "name": "pixielity/package-b",
+    "description": "The Pixielity Package B Component - Extended functionality module.",
+    "type": "library",
+    "keywords": [
+        "pixielity",
+        "package-b",
+        "module",
+        "component"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Pixielity Team",
+            "email": "team@pixielity.com",
+            "homepage": "https://pixielity.com"
+        }
+    ],
+    "homepage": "https://github.com/pixielity/framework",
+    "support": {
+        "issues": "https://github.com/pixielity/framework/issues",
+        "source": "https://github.com/pixielity/framework/tree/main/src/PackageB",
+        "docs": "https://docs.pixielity.com/packages/package-b"
+    },
+    "require": {
+        "php": "^8.3 || ^8.4 || ^8.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^11.5",
+        "mockery/mockery": "^1.6"
+    },
+    "autoload": {
+        "psr-4": {
+            "Pixielity\\PackageB\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Pixielity\\PackageB\\Tests\\": "tests/"
+        }
+    },
+    "config": {
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "sort-packages": true
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-main": "1.0-dev"
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
