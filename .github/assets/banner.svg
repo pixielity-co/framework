@@ -1,0 +1,51 @@
+<svg width="1200" height="300" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#764ba2;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="300" fill="url(#grad1)"/>
+  
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect width="1200" height="300" fill="url(#grid)"/>
+  
+  <!-- Logo/Icon -->
+  <g transform="translate(100, 75)">
+    <rect x="0" y="0" width="150" height="150" rx="20" fill="rgba(255,255,255,0.2)"/>
+    <text x="75" y="95" font-family="Arial, sans-serif" font-size="80" font-weight="bold" fill="white" text-anchor="middle">P</text>
+  </g>
+  
+  <!-- Title -->
+  <text x="300" y="120" font-family="Arial, sans-serif" font-size="64" font-weight="bold" fill="white">
+    Pixielity Framework
+  </text>
+  
+  <!-- Subtitle -->
+  <text x="300" y="170" font-family="Arial, sans-serif" font-size="28" fill="rgba(255,255,255,0.9)">
+    Enterprise-Ready PHP Framework
+  </text>
+  
+  <!-- Features -->
+  <g transform="translate(300, 200)">
+    <text x="0" y="0" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.8)">
+      ✓ Monorepo Architecture
+    </text>
+    <text x="250" y="0" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.8)">
+      ✓ PSR Compliant
+    </text>
+    <text x="450" y="0" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.8)">
+      ✓ Type Safe
+    </text>
+    <text x="620" y="0" font-family="Arial, sans-serif" font-size="18" fill="rgba(255,255,255,0.8)">
+      ✓ Production Ready
+    </text>
+  </g>
+</svg>

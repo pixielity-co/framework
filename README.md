@@ -1,9 +1,18 @@
-# Pixielity Framework
+<p align="center">
+  <img src=".github/assets/banner.svg" alt="Pixielity Framework Banner" width="100%">
+</p>
 
-[![CI](https://github.com/pixielity/framework/workflows/CI/badge.svg)](https://github.com/pixielity/framework/actions)
-[![codecov](https://codecov.io/gh/pixielity/framework/branch/main/graph/badge.svg)](https://codecov.io/gh/pixielity/framework)
-[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![PHP Version](https://img.shields.io/badge/php-%5E8.3%20%7C%20%5E8.4%20%7C%20%5E8.5-blue)](https://php.net)
+<p align="center">
+  <a href="https://github.com/pixielity-co/framework/actions"><img src="https://github.com/pixielity-co/framework/workflows/Tests/badge.svg" alt="Tests"></a>
+  <a href="https://github.com/pixielity-co/framework/actions"><img src="https://github.com/pixielity-co/framework/workflows/Code%20Quality/badge.svg" alt="Code Quality"></a>
+  <a href="https://codecov.io/gh/pixielity-co/framework"><img src="https://codecov.io/gh/pixielity-co/framework/branch/main/graph/badge.svg" alt="codecov"></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License"></a>
+  <a href="https://php.net"><img src="https://img.shields.io/badge/php-%5E8.3%20%7C%20%5E8.4%20%7C%20%5E8.5-blue" alt="PHP Version"></a>
+  <a href="https://packagist.org/packages/pixielity-co/framework"><img src="https://img.shields.io/packagist/v/pixielity-co/framework.svg" alt="Latest Version"></a>
+  <a href="https://packagist.org/packages/pixielity-co/framework"><img src="https://img.shields.io/packagist/dt/pixielity-co/framework.svg" alt="Total Downloads"></a>
+</p>
+
+# Pixielity Framework
 
 Enterprise-ready PHP framework with monorepo architecture, designed for scalability, maintainability, and modern development practices.
 
@@ -25,7 +34,7 @@ Enterprise-ready PHP framework with monorepo architecture, designed for scalabil
 
 ```bash
 # Clone the repository
-git clone https://github.com/pixielity/framework.git
+git clone https://github.com/pixielity-co/framework.git
 cd framework
 
 # Install dependencies
@@ -280,10 +289,10 @@ The Pixielity Framework is open-sourced software licensed under the [MIT license
 ## Credits
 
 - [Pixielity Team](https://pixielity.com)
-- [All Contributors](https://github.com/pixielity/framework/contributors)
+- [All Contributors](https://github.com/pixielity-co/framework/contributors)
 
 ## Support
 
 - [Documentation](https://docs.pixielity.com)
-- [Issue Tracker](https://github.com/pixielity/framework/issues)
-- [Discussions](https://github.com/pixielity/framework/discussions)
+- [Issue Tracker](https://github.com/pixielity-co/framework/issues)
+- [Discussions](https://github.com/pixielity-co/framework/discussions)
