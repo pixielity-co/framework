@@ -44,7 +44,7 @@ jobs:
           ssh-private-key: ${{ secrets.SPLIT_SSH_KEY }}
 
       - name: 🔀 Split package - ${{ matrix.package.name }}
-        uses: symplify/monorepo-split-github-action@v2.3.0
+        uses: symplify/monorepo-split-github-action@v2.4.4
         with:
           package_directory: ${{ matrix.package.path }}
           repository_organization: pixielity
