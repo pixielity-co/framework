@@ -28,7 +28,7 @@ jobs:
     if: ${{ github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success' }}
     steps:
       - name: 2.0 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: 2.1 Setup PHP Environment
         uses: shivammathur/setup-php@v2
