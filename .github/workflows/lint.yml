@@ -23,7 +23,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: 1.0 Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           description: "Retrieve the latest codebase for analysis."
 
